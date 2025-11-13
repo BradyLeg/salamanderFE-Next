@@ -1,4 +1,5 @@
-import salamanderImg from '../assets/salamander.jpg'
+import Image from 'next/image'
+import salamanderImg from '@/public/salamander.jpg'
 
 export default function ProcessorStartCard(){
     return(
@@ -12,7 +13,8 @@ export default function ProcessorStartCard(){
                 </ul>
                 </div>
                 <div className="card-right">
-                    <img src={salamanderImg} alt="Binarized Salamander Miku" />
+                    {/* <img src= {salamanderImg} alt="Binarized Salamander Miku" /> */}
+                    <Image src={salamanderImg} alt="Binarized Salamander Miku" />
                 </div>
             </div>
 
