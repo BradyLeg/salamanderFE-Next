@@ -1,26 +1,184 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #64908F;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+a:hover {
+  color: #535bf2;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Main layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full height page */
+}
+
+/* Centers content horizontally */
+.app-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* ⬅️ centers horizontally */
+  justify-content: flex-start; /* keep items near the top */
+  width: 100%;
+  flex: 1;
+  padding: 20px;
+}
+
+.container-card-starter {
+  display: flex;
+  flex-direction: column;        /* Two rows total */
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  background-color: #A68B50;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  gap: 20px;                     /* Space between rows */
+}
+
+/* --- First Row: Two side-by-side sections --- */
+.container-card-starter > div.card-left,
+.container-card-starter > div.card-right {
+  flex: 1;
+}
+
+.card-left,
+.card-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Create a two-column layout for the top row */
+.container-card-starter > .card-left,
+.container-card-starter > .card-right {
+  width: 100%;
+}
+
+/* Make the top row a flex container */
+.container-card-starter > :nth-child(1),
+.container-card-starter > :nth-child(2) {
+  display: flex;
+}
+
+.container-card-starter > div:first-child {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* --- List Styling --- */
+.card-left ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.card-left li {
+  padding: 8px 0;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* --- Image Styling --- */
+.card-right img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* --- Button Row --- */
+.button-lower {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button-lower button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #A68B50;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-lower button:hover {
+  background-color: #eee;
 }
