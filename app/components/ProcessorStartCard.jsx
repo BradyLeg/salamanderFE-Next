@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import salamanderImg from '@/public/salamander.jpg'
+import DropDown from '@/app/components/imgCondition/DropDown';
 
 export default function ProcessorStartCard() {
     return (
@@ -7,8 +8,8 @@ export default function ProcessorStartCard() {
             <div className="card-row">
                 <div className="card-left">
                     <ul>
-                        <li>Import Video</li>
-                        <li>Color <input type="color" id="favcolor" name="favcolor"></input></li>
+                        <li>Import Video <DropDown /></li>
+                        <li>Color <input type="color" id="color" name="color"></input></li>
                         <li>Threshold <input type="range" min="1" max="100"></input></li>
                     </ul>
                 </div>
