@@ -17,9 +17,8 @@ export default function ProcessorStartCard() {
         setHex(event.target.value);
     }
 
-
     return (
-        <div className="container-card-starter">
+        <form className="container-card-starter">
             <div className="card-row">
                 <div className="card-left">
                     <ul>
@@ -38,6 +37,6 @@ export default function ProcessorStartCard() {
             <div className="button-lower">
                 <button type="submit">START</button>
             </div>
-        </div>
+        </form>
     )
 }
