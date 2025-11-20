@@ -1,7 +1,7 @@
-export default function Footer(){
-    return(
+export default function Footer() {
+    return (
         <div className="footer-container">
-            <h3>Brady & Daniel // Blame Brady for Miku</h3>
+            <h3>Brady & Daniel</h3>
         </div>
     )
 }

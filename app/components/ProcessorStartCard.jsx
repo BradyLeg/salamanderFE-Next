@@ -35,7 +35,7 @@ export default function ProcessorStartCard() {
             </div>
 
             <div className="button-lower">
-                <button type="submit">START</button>
+                <button type="submit">Process Video</button>
             </div>
         </form>
     )
