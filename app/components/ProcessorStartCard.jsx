@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import salamanderImg from '@/public/salamander.jpg'
+import binarizedImg from '@/public/binarized.png'
 import DropDown from '@/app/components/imgCondition/DropDown';
 
 export default function ProcessorStartCard() {
@@ -16,6 +17,7 @@ export default function ProcessorStartCard() {
                 <div className="card-right">
                     {/* <img src= {salamanderImg} alt="Binarized Salamander Miku" /> */}
                     <Image src={salamanderImg} alt="Binarized Salamander Miku" />
+                    <Image src={binarizedImg} alt="Binarized Salamander Miku" />
                 </div>
             </div>
 
