@@ -17,6 +17,11 @@ export default function ProcessorStartCard() {
         setHex(event.target.value);
     }
 
+    /* 
+    Show video tumbnail and process button when video is selected
+    Second route for displaying results 
+    */
+
     return (
         <form className="container-card-starter">
             <div className="card-row">
