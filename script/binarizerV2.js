@@ -15,12 +15,13 @@ function colorDistance(r1, g1, b1, r2, g2, b2) {
 }
 
 function toBinaryArray(imageData, rTarget, gTarget, bTarget, threshold) {
-    const binaryArray = []; //2D array to hold binary values
-
     const width = imageData.width;
     const height = imageData.height;
 
+    const binaryArray = new Array(height); //2D array to hold binary values
+
     for (let y = 0; y < height; y++) {
+        binaryArray[y] = new Array(width).fill(0); // Initialize row
         for (let x = 0; x < width; x++) {
             const rgb = imageData.getPixel(x, y);
             const r = (rgb >> 16) & 0xFF;

@@ -1,12 +1,22 @@
 import Jimp from "jimp";
 import salamanderImg from './../public/salamander.jpg'
 
+let HEX_RGB = "FFA200";
+let rgb = hexToRgb(HEX_RGB);
+let THRESHOLD = 164;
+
 function hexToRgb(hex) {
-    const num = hex.replace("#", "");
+    hex = hex.replace(/^#/, '');
+
+    // Check for shorthand format (#RGB)
+    if (hex.length === 3) {
+        hex = hex.split('').map(c => c + c).join('');
+    }
+
     return {
-        r: parseInt(num.substring(0, 2), 16),
-        g: parseInt(num.substring(2, 4), 16),
-        b: parseInt(num.substring(4, 6), 16)
+        r: parseInt(hex.substring(0, 2), 16),
+        g: parseInt(hex.substring(2, 4), 16),
+        b: parseInt(hex.substring(4, 6), 16)
     };
 }
 
