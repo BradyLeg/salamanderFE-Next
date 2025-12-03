@@ -1,3 +1,5 @@
+const Jimp = require("jimp");
+
 function main(imageData, hexColor, threshold) {
 
     hexColor = hexColor.replace('#', '');
