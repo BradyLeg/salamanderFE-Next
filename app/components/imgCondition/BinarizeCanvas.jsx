@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useState, useEffect } from "react";
 import test from '@/public/salamander.jpg';
 //import { blob } from "stream/consumers";
 
@@ -44,7 +45,7 @@ export default function BinarizeCanvas(props) {
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0);
 
-            binarizeCanvas(canvas, ctx);
+            binarizeCanvas(canvas, ctx, props);
         };
     };
 
@@ -53,11 +54,20 @@ export default function BinarizeCanvas(props) {
         const { width, height } = canvas;
         const imageData = ctx.getImageData(0, 0, width, height);
         const data = imageData.data;
+        const {hexColor, threshold} = props;
 
         //threshold binarization
-        const threshold = 60 //props.rangeNum;
+        // threshold = 60 //props.rangeNum;
+
+        let color = hexColor.replace('#', '');
+        const rTarget = parseInt(color.substring(0, 2), 16);
+        const gTarget = parseInt(color.substring(2, 4), 16);
+        const bTarget = parseInt(color.substring(4, 6), 16);
+
+
         for (let i = 0; i < data.length; i += 4) {
-            const value = data[i] > threshold ? 255 : 0;
+            const distance = colorDistance(r, g, b, rTarget, gTarget, bTarget);
+            const value = distance >= threshold ? 255 : 0;
             data[i] = data[i + 1] = data[i + 2] = value;
         }
 
@@ -69,6 +79,9 @@ export default function BinarizeCanvas(props) {
         });
     }
 
+    function colorDistance(r1, g1, b1, r2, g2, b2) {
+        return Math.sqrt(Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2));
+    }
 
     return (
         <div>

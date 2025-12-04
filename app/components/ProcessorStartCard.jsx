@@ -40,7 +40,7 @@ export default function ProcessorStartCard() {
                 </div>
                 {filename != "" && <div className="card-right">
                     <div className='imageFetchBE'><RenderImg filename={filename} /></div>
-                    <div className='imageFetchBE'> <BinarizeCanvas /> </div>
+                    <div className='imageFetchBE'> <BinarizeCanvas filename = {filename} hexColor = {hexNum} threshold = {rangeNum}/> </div>
                 </div>
                 }
             </div>
