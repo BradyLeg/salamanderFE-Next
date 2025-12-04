@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image'
 import DropDown from '@/app/components/imgCondition/DropDown';
+import BinarizeCanvas from '@/app/components/imgConditionBinarizeCanvas';
 import { useState, useEffect } from "react";
 // import { toBinarized } from '@/script/binarizerV3';
 import salamanderImg from '@/public/salamander.jpg';
@@ -85,7 +86,7 @@ export default function ProcessorStartCard() {
 
     return (
         <form className="container-card-starter" onSubmit={e => { e.preventDefault(); fetchBinarized(); }}>
-        {/* <form className="container-card-starter" action={`/process/{filename}?targetColor=<hex>&threshold=<int>`} */}
+            {/* <form className="container-card-starter" action={`/process/{filename}?targetColor=<hex>&threshold=<int>`} */}
             <div className="card-row">
                 <div className="card-left">
                     <ul>
