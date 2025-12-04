@@ -3,10 +3,28 @@ import React from "react";
 import test from '@/public/salamander.jpg';
 //import { blob } from "stream/consumers";
 
+function imgGet(props){
+    const [imgSrc, setImgSrc] = useState("");
+
+    useEffect(() => {
+        const getImage = async () => {
+            const src = await fetchImg(props.filename);
+            setImgSrc(src);
+        };
+
+        // Call the getImage function inside useEffect
+        getImage();
+    }, [props.filename]); // Dependency on filename
+
+    return imgSrc;
+}
+
 
 export default function BinarizeCanvas(props) {
     const [outputUrl, setOutputUrl] = React.useState(null);
     const canvasRef = React.useRef(null);
+
+    const imgToProcess = imgGet(props);
 
     React.useEffect(() => {
         handleFile();
@@ -17,7 +35,7 @@ export default function BinarizeCanvas(props) {
 
         const img = new Image();
 
-        img.src = test.src; //props.image;
+        img.src = imgToProcess; //props.image;
         img.onload = () => {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");
