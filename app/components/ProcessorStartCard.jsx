@@ -1,11 +1,13 @@
 'use client';
 import Image from 'next/image'
 import DropDown from '@/app/components/imgCondition/DropDown';
+import RenderImg from './imgCondition/RenderImg';
 import { useState, useEffect } from "react";
 // import { toBinarized } from '@/script/binarizerV3';
 import salamanderImg from '@/public/salamander.jpg';
 import test1 from '@/public/c6475ltao8fe1.webp';
 import binarizedImg from '@/public/binarized.png'
+// import { fetchImg } from '../api/binarize/route';
 
 export default function ProcessorStartCard() {
     const [rangeNum, setNum] = useState(60);
@@ -98,9 +100,12 @@ export default function ProcessorStartCard() {
                     </ul>
                 </div>
                 {filename != "" && <div className="card-right">
-                    <Image src={salamanderImg} alt="Binarized Salamander Miku" />
+                    {/* <Image src={salamanderImg} alt="Binarized Salamander Miku" /> */}
                     {/* <Image src={binarizedImg} alt="Binarized Salamander Miku" /> */}
-                    {binarizedSrc && (<img src={binarizedSrc} alt="Binarized Salamander" />)}
+                    {/* {binarizedSrc && (<img src={binarizedSrc} alt="Binarized Salamander" />)} */}
+
+                    <RenderImg filename={filename} />
+                    <RenderImg filename={filename} />
                 </div>
                 }
             </div>
