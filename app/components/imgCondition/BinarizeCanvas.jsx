@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import test from '@/public/salamander.jpg';
-import { blob } from "stream/consumers";
+//import { blob } from "stream/consumers";
 
 
-export default function BinarizeCanvas(props) {
+export default function BinarizeCanvas() {
     const [outputUrl, setOutputUrl] = React.useState(null);
     const canvasRef = React.useRef(null);
 
@@ -19,7 +19,7 @@ export default function BinarizeCanvas(props) {
 
         const img = new Image();
 
-        img.src = test //props.image;
+        img.src = test.src; //props.image;
         img.onload = () => {
             const canvas = canvasRef.current;
             const ctx = canvas.getContext("2d");

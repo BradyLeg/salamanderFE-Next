@@ -68,3 +68,34 @@ export async function fetchVideos() {
     return []; // Return an empty array in case of an error
   }
 }
+
+export async function fetchImg(filename) {
+  try {
+    let response;
+
+    // Check if the filename ends with .mp4 (fetch thumbnail), otherwise fetch the image
+    if (filename.endsWith('.mp4')) {
+      response = await fetch(`http://localhost:3000/thumbnail/${filename}`);
+    } else {
+      response = await fetch(`http://localhost:3000/videos/${filename}`);
+    }
+
+    // Check if the response is successful (status 200)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    // Convert the response to a blob (binary large object)
+    const blob = await response.blob();
+
+    // Create a local URL for the blob
+    const imageUrl = URL.createObjectURL(blob);
+
+    // Return the image URL so that it can be used in an <img> tag
+    return imageUrl;
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    return ''; // Return an empty string in case of an error
+  }
+}
+
