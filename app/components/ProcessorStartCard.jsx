@@ -104,7 +104,7 @@ export default function ProcessorStartCard() {
                     {/* <Image src={binarizedImg} alt="Binarized Salamander Miku" /> */}
                     {/* {binarizedSrc && (<img src={binarizedSrc} alt="Binarized Salamander" />)} */}
 
-                    <RenderImg filename={filename} />
+                    <div className='imageFetchBE'><RenderImg filename={filename} /></div>
                     <RenderImg filename={filename} />
                 </div>
                 }
