@@ -17,14 +17,14 @@ export async function toBinarized(imageData, hexColor, threshold) {
         for (let x = 0; x < width; x++) {
             const idx = (y * width + x) * 4; //Jimp uses ID instead of cordinates
             const r = data[idx];
-            const g = data[idx+1];
-            const b = data[idx+2];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
 
             const distance = colorDistance(r, g, b, rTarget, gTarget, bTarget);
             const color = distance >= threshold ? 0xFFFFFFFF : 0x000000FF;
 
             image.setPixelColor(color, x, y); //edit current instance in memory, with a binarized values
-        }  
+        }
     }
     // await image.writeAsync('output.jpg');
     // console.log('Binarized image saved as output.jpg');
