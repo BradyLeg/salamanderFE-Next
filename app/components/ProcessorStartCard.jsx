@@ -10,6 +10,8 @@ export default function ProcessorStartCard() {
     const [rangeNum, setNum] = useState(60);
     const [hexNum, setHex] = useState("#2a3e25");
     const [filename, setFile] = useState(salamanderImg);
+    const [show, setShow] = useState(false);
+
 
     function setNumState(event) {
         setNum(event.target.value);
@@ -21,6 +23,7 @@ export default function ProcessorStartCard() {
 
     function setFileName(event) {
         setFile(event.target.value);
+        console.log(1);
     }
     // useEffect(() => {
     //     setFile();
@@ -44,29 +47,30 @@ export default function ProcessorStartCard() {
     */
 
 
-
-
-
     return (
         <form className="container-card-starter" /*action={`/process/{filename}?targetColor=<hex>&threshold=<int>`}*/>
             <div className="card-row">
                 <div className="card-left">
                     <ul>
                         <li>Import Video <DropDown event={setFileName} /></li>
-                        <li>Color <input type="color" id="color" name="color" defaultValue={hexNum} onInput={setColor}></input></li>
-                        <li>Threshold <input type="range" min="0" max="164" defaultValue={rangeNum} onInput={setNumState}></input><p>{rangeNum}</p></li>
+                        {show && <>
+                            <li>Color <input type="color" id="color" name="color" defaultValue={hexNum} onInput={setColor}></input></li>
+                            <li>Threshold <input type="range" min="0" max="164" defaultValue={rangeNum} onInput={setNumState}></input><p>{rangeNum}</p></li>
+                        </>}
+
                     </ul>
                 </div>
-                <div className="card-right">
-
-                    <Image src={test} alt="Binarized Salamander Miku" />
+                {show && <div className="card-right">
+                    <Image src={salamanderImg} alt="Binarized Salamander Miku" />
                     <Image src={binarizedImg} alt="Binarized Salamander Miku" />
                 </div>
+                }
             </div>
 
-            <div className="button-lower">
+            {show && <div className="button-lower">
                 <button type="submit">“Process Video with These Settings</button>
             </div>
+            }
         </form>
     )
 }
