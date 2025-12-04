@@ -15,6 +15,8 @@ export default function DropDown(props) {
         )
     })
 
+    videoOptions.unshift((<option value="" key="">Select an option</option>))
+
     return (
         <select name="video" id="video" onChange={props.event}>
             {videoOptions}
