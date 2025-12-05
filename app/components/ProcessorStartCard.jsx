@@ -1,7 +1,7 @@
 'use client';
 import DropDown from '@/app/components/imgCondition/DropDown';
-import BinarizeCanvas from '@/app/components/imgCondition/BinarizeCanvas';
-import RenderImg from './imgCondition/RenderImg';
+import { BinarizeCanvas, RenderImg } from '@/app/components/imgCondition/BinarizeCanvas';
+// import RenderImg from './imgCondition/RenderImg';
 import { useState, useEffect } from "react";
 
 export default function ProcessorStartCard() {
