@@ -1,6 +1,7 @@
 'use client';
 import DropDown from '@/app/components/imgCondition/DropDown';
 import { BinarizeCanvas, RenderImg } from '@/app/components/imgCondition/BinarizeCanvas';
+import SoundButton from './ConfirmButton';
 // import RenderImg from './imgCondition/RenderImg';
 import { useState, useEffect } from "react";
 
@@ -46,7 +47,8 @@ export default function ProcessorStartCard() {
             </div>
 
             {filename != "" && <div className="button-lower">
-                <button type="submit">“Process Video with These Settings</button>
+                {/* <button type="submit">“Process Video with These Settings</button> */}
+                <SoundButton/>
             </div>
             }
         </form>
