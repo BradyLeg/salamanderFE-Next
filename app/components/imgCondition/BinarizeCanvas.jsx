@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import test from '@/public/salamander.jpg';
-//import { blob } from "stream/consumers";
 
 
 export default function BinarizeCanvas(props) {
@@ -30,11 +29,22 @@ export default function BinarizeCanvas(props) {
         };
     };
 
+    // hexColor = hexColor.replace('#', '');
+    // const rTarget = parseInt(hexColor.substring(0, 2), 16);
+    // const gTarget = parseInt(hexColor.substring(2, 4), 16);
+    // const bTarget = parseInt(hexColor.substring(4, 6), 16);
+
 
     const binarizeCanvas = (canvas, ctx) => {
         const { width, height } = canvas;
         const imageData = ctx.getImageData(0, 0, width, height);
         const data = imageData.data;
+        const hexColor = props.target.replace('#', '');
+
+        const rTarget = parseInt(hexColor.substring(0, 2), 16);
+        const gTarget = parseInt(hexColor.substring(2, 4), 16);
+        const bTarget = parseInt(hexColor.substring(4, 6), 16);
+
 
         //threshold binarization
         const threshold = 60 //props.rangeNum;
