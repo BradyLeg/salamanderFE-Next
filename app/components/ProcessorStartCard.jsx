@@ -26,7 +26,7 @@ export default function ProcessorStartCard() {
     }
 
     return (
-        <form className="container-card-starter" onSubmit={e => { e.preventDefault(); fetchBinarized(); }}>
+        <form className="container-card-starter" onSubmit={e => { e.preventDefault(); }}>
             {/* <form className="container-card-starter" action={`/process/{filename}?targetColor=<hex>&threshold=<int>`} */}
             <div className="card-row">
                 <div className="card-left">
