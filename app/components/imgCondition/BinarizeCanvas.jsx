@@ -47,7 +47,7 @@ export function BinarizeCanvas(props) {
         if (imgSrc) {
             handleFile(imgSrc); // Now handleFile is called when imgSrc is ready
         }
-    }, [imgSrc]); // Effect will trigger when imgSrc is updated
+    }, [imgSrc, props.hexColor, props.threshold]); // Effect will trigger when imgSrc is updated
 
     const handleFile = (imgSrc) => {
         const img = new Image();
@@ -71,11 +71,11 @@ export function BinarizeCanvas(props) {
         const imageData = ctx.getImageData(0, 0, width, height);
         const data = imageData.data;
 
-        const hexColor = props.target.replace('#', '');
+        // const hexColor = props.target.replace('#', '');
 
-        const rTarget = parseInt(hexColor.substring(0, 2), 16);
-        const gTarget = parseInt(hexColor.substring(2, 4), 16);
-        const bTarget = parseInt(hexColor.substring(4, 6), 16);
+        // const rTarget = parseInt(hexColor.substring(0, 2), 16);
+        // const gTarget = parseInt(hexColor.substring(2, 4), 16);
+        // const bTarget = parseInt(hexColor.substring(4, 6), 16);
 
 
         const hexColor = props.hexColor || "#49070B";
