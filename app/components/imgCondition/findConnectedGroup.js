@@ -7,7 +7,7 @@ export function findConnectedGroups(imageData, width, height){
         const row = [];
         for (let x = 0; x < width; x++) {
             const idx = (y * width + x) * 4;
-            row.push(data[idx] === 0 ? 1 : 0);  // black = 1, white = 0
+            row.push(data[idx] === 255 ? 1 : 0);  // black = 1, white = 0
         }
         grid.push(row);
     }
