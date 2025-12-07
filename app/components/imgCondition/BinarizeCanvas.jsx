@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
 import { fetchImg } from "../../api/binarize/route";
 import { findConnectedGroups } from "./findConnectedGroup";
@@ -86,7 +87,7 @@ export function BinarizeCanvas(props) {
 
         for (let i = 0; i < data.length; i += 4) {
             const distance = colorDistance(data[i], data[i + 1], data[i + 2], rTarget, gTarget, bTarget);
-            const value = distance >= threshold ? 0 : 255;
+            const value = distance >= threshold ? 255 : 0;
             data[i] = data[i + 1] = data[i + 2] = value;
         }
 
