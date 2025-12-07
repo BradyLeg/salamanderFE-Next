@@ -1,6 +1,7 @@
 'use client';
 import DropDown from '@/app/components/imgCondition/DropDown';
 import { BinarizeCanvas, RenderImg } from '@/app/components/imgCondition/BinarizeCanvas';
+import { TrackingOverlay } from './imgCondition/TrackingOverlay';
 import SoundButton from './ConfirmButton';
 // import RenderImg from './imgCondition/RenderImg';
 import { useState, useEffect } from "react";
@@ -8,8 +9,9 @@ import { useState, useEffect } from "react";
 export default function ProcessorStartCard() {
     const [rangeNum, setNum] = useState(60);
     const [hexNum, setHex] = useState("#2a3e25");
-    const [binarizedSrc, setBinarizedSrc] = useState(null);
+    // const [binarizedSrc, setBinarizedSrc] = useState(null);
     const [filename, setFile] = useState("");
+    const [centroid, setCentroid] = useState(null);
     //const [show, setShow] = useState(false);
 
     function setNumState(event) {
@@ -39,13 +41,20 @@ export default function ProcessorStartCard() {
 
                     </ul>
                 </div>
-                {filename != "" && <div className="card-right">
+                {filename != "" && <div className="card-right" style={{ position: "relative" }}>
                     <div className='imageFetchBE'><RenderImg filename={filename} /></div>
-                    <div className='imageFetchBE'> <BinarizeCanvas filename = {filename} hexColor = {hexNum} threshold = {rangeNum}     onObjectFound={(centroid, pixels) => {
-                        console.log("Biggest object centroid:", centroid);
-                        console.log("Full pixel list:", pixels);
-                    }}/> </div>
-                </div>
+                    <div className='imageFetchBE'> 
+                        <div className = "canvas-wrapper" style={{ position: 'relative', display: 'inline-block', overflow: 'hidden' }}>
+                            <BinarizeCanvas 
+                                filename = {filename} 
+                                hexColor = {hexNum} 
+                                threshold = {rangeNum}     
+                                onObjectFound={(c) => setCentroid(c)}
+                            />
+                            <TrackingOverlay point={centroid}/> 
+                        </div>
+                    </div>
+                    </div>
                 }
             </div>
 

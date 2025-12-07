@@ -96,7 +96,13 @@ export function BinarizeCanvas(props) {
         ctx.putImageData(imageData, 0, 0);
 
         const result = findConnectedGroups(imageData, width, height);
-        props.onObjectFound?.(result.centroid, result.pixels);
+        // Send normalized coordinates (0..1) so overlay can position correctly
+        if (result && result.centroid && typeof result.centroid.x === 'number' && typeof result.centroid.y === 'number') {
+            const normalized = { x: result.centroid.x / width, y: result.centroid.y / height };
+            props.onObjectFound?.(normalized, result.pixels);
+        } else {
+            props.onObjectFound?.(null, []);
+        }
 
         // Convert canvas to URL to show output
         canvas.toBlob((blob) => {

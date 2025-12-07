@@ -42,6 +42,7 @@ export function findConnectedGroups(imageData, width, height){
             }
         }
 
+        // console.log(`Coordinates: x:${point.x}, y:${point.y}`);
         return pixels;
     }
 
@@ -67,6 +68,9 @@ export function findConnectedGroups(imageData, width, height){
         x: Math.floor(sumX / largestGroup.length),
         y: Math.floor(sumY / largestGroup.length)
     };
+
+    console.log(`Coordinates: x:${centroid.x}, y:${centroid.y}`);
+
 
     return {
         pixels: largestGroup,
