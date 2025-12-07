@@ -45,13 +45,15 @@ export default function ProcessorStartCard() {
                     <div className='imageFetchBE'><RenderImg filename={filename} /></div>
                     <div className='imageFetchBE'> 
                         <div className = "canvas-wrapper" style={{ position: 'relative', display: 'inline-block', overflow: 'hidden' }}>
+                            {/* We'll need to get the image size from BinarizeCanvas and pass it to TrackingOverlay */}
                             <BinarizeCanvas 
-                                filename = {filename} 
-                                hexColor = {hexNum} 
-                                threshold = {rangeNum}     
-                                onObjectFound={(c) => setCentroid(c)}
+                                filename={filename}
+                                hexColor={hexNum}
+                                threshold={rangeNum}
+                                onObjectFound={(c, _pixels, imgSize) => setCentroid({ ...c, imgSize })}
                             />
-                            <TrackingOverlay point={centroid}/> 
+                            {/* TrackingOverlay expects normalized coordinates and image size */}
+                            <TrackingOverlay point={centroid} />
                         </div>
                     </div>
                     </div>

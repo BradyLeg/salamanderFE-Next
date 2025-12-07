@@ -1,7 +1,4 @@
 "use client";
-import React from "react";
-import test from '@/public/salamander.jpg';
-
 import { useState, useEffect, useRef } from "react";
 import { fetchImg } from "../../api/binarize/route";
 import { findConnectedGroups } from "./findConnectedGroup";
@@ -79,8 +76,8 @@ export function BinarizeCanvas(props) {
         // const bTarget = parseInt(hexColor.substring(4, 6), 16);
 
 
-        const hexColor = props.hexColor || "#49070B";
-        const threshold = props.threshold || 164;
+        const hexColor = props.hexColor;
+        const threshold = props.threshold;
 
         let color = hexColor.replace('#', '');
         const rTarget = parseInt(color.substring(0, 2), 16);
@@ -89,7 +86,7 @@ export function BinarizeCanvas(props) {
 
         for (let i = 0; i < data.length; i += 4) {
             const distance = colorDistance(data[i], data[i + 1], data[i + 2], rTarget, gTarget, bTarget);
-            const value = distance >= threshold ? 255 : 0;
+            const value = distance >= threshold ? 0 : 255;
             data[i] = data[i + 1] = data[i + 2] = value;
         }
 
@@ -114,10 +111,23 @@ export function BinarizeCanvas(props) {
         return Math.sqrt(Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2));
     }
 
+    // Track rendered image size
+    const [imgSize, setImgSize] = useState({ width: 0, height: 0 });
+
     return (
-        <div>
+        <div style={{ position: 'relative', display: 'inline-block', overflow: 'hidden' }}>
             <canvas ref={canvasRef} style={{ display: "none" }} />
-            {outputUrl && <img src={outputUrl} alt="Binarized output" />}
+            {outputUrl && (
+                <img
+                    src={outputUrl}
+                    alt="Binarized output"
+                    style={{ maxWidth: '100%', maxHeight: 300, display: 'block' }}
+                    onLoad={e => {
+                        setImgSize({ width: e.target.naturalWidth, height: e.target.naturalHeight });
+                    }}
+                />
+            )}
+            {/* TrackingOverlay will be rendered by parent, but if you want to render here, pass imgSize */}
         </div>
     );
 }
