@@ -4,6 +4,7 @@ import test from '@/public/salamander.jpg';
 
 import { useState, useEffect, useRef } from "react";
 import { fetchImg } from "../../api/binarize/route";
+import { findConnectedGroups } from "./findConnectedGroup";
 
 
 // Custom hook for fetching image (memoizing the result)
@@ -93,6 +94,9 @@ export function BinarizeCanvas(props) {
         }
 
         ctx.putImageData(imageData, 0, 0);
+
+        const result = findConnectedGroups(imageData, width, height);
+        props.onObjectFound?.(result.centroid, result.pixels);
 
         // Convert canvas to URL to show output
         canvas.toBlob((blob) => {

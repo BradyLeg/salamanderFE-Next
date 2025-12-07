@@ -41,7 +41,10 @@ export default function ProcessorStartCard() {
                 </div>
                 {filename != "" && <div className="card-right">
                     <div className='imageFetchBE'><RenderImg filename={filename} /></div>
-                    <div className='imageFetchBE'> <BinarizeCanvas filename = {filename} hexColor = {hexNum} threshold = {rangeNum}/> </div>
+                    <div className='imageFetchBE'> <BinarizeCanvas filename = {filename} hexColor = {hexNum} threshold = {rangeNum}     onObjectFound={(centroid, pixels) => {
+                        console.log("Biggest object centroid:", centroid);
+                        console.log("Full pixel list:", pixels);
+                    }}/> </div>
                 </div>
                 }
             </div>
