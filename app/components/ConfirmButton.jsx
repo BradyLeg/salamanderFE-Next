@@ -5,7 +5,7 @@ import { startProcessing } from "./../api/binarize/route";
 export default function SoundButton(props) {
     const audioRef = useRef(null);
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (audioRef.current) {
             audioRef.current.currentTime = 0;
             audioRef.current.play();
@@ -14,7 +14,7 @@ export default function SoundButton(props) {
         console.log(props.hex)
         console.log(props.threshold)
         console.log("Sending")
-        startProcessing(props.file, props.hex, props.threshold);
+        props.setJob(await startProcessing(props.file, props.hex, props.threshold));
     };
 
     return (
