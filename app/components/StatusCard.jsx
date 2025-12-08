@@ -7,7 +7,7 @@ export default function StatusCard(props) {
         // Construct the new URL by appending the setURL value
         console.log("props.setURL:", props.setURL);
         const fullUrl = props.setURL.endsWith(".csv")
-            ? `${props.setURL}`
+            ? props.setURL
             : `results/${props.setURL}.csv`;
         const newUrl = `http://localhost:3000/${fullUrl}`;
         console.log("New URL:", newUrl);
