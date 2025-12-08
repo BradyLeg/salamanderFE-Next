@@ -3,9 +3,9 @@ import DropDown from '@/app/components/imgCondition/DropDown';
 import { BinarizeCanvas, RenderImg } from '@/app/components/imgCondition/BinarizeCanvas';
 import { TrackingOverlay } from './imgCondition/TrackingOverlay';
 import SoundButton from './ConfirmButton';
-import { getJobStatus, startProcessing } from "./../api/binarize/route";
 // import RenderImg from './imgCondition/RenderImg';
 import { useState, useEffect } from "react";
+import { getJobStatus } from '../api/binarize/route';
 
 export default function ProcessorStartCard() {
     const [rangeNum, setNum] = useState(60);
@@ -15,8 +15,6 @@ export default function ProcessorStartCard() {
     const [centroid, setCentroid] = useState(null);
     const [jobId, setJobId] = useState("");
     //const [show, setShow] = useState(false);
-
-    console.log("JobId:" + jobId)
 
     function setNumState(event) {
         setNum(event.target.value);
@@ -31,7 +29,7 @@ export default function ProcessorStartCard() {
         console.log(filename);
     }
 
-    function setJob(data) {
+        function setJob(data) {
         setJobId(data);
     }
 
@@ -63,7 +61,6 @@ export default function ProcessorStartCard() {
             stopped = true;
         };
     }, [jobId])
-
 
     return (
         <form className="container-card-starter" onSubmit={e => { e.preventDefault(); }}>
@@ -100,9 +97,7 @@ export default function ProcessorStartCard() {
 
             {filename != "" && <div className="button-lower">
                 {/* <button type="submit">“Process Video with These Settings</button> */}
-                {/* <SoundButton file={filename} hex={hexNum} threshold={rangeNum}/> */}
-
-                <SoundButton file={filename} hex={hexNum} threshold={rangeNum} setJob={setJobId} />
+                <SoundButton file={filename} hex={hexNum} threshold={rangeNum} setJob={setJob} />
             </div>
             }
         </form>
