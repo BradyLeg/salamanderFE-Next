@@ -8,7 +8,10 @@ A tool for tracking object centroids from videos using a Docker-based processing
 
 ### 1. Download the Docker Image
 
-Download (or pull) the Salamander Processor Docker image from: "URL"
+Download (or pull) the Salamander Processor Docker image from:
+```bash
+docker pull ghcr.io/dani-dev28/salamander:latest
+```
 
 ### 2. Prepare Input & Output Folders
 
