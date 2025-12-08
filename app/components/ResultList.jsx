@@ -26,8 +26,8 @@ export default function ResultList(props) {
                 {result.length > 0 ? (
                     result.map((result, index) => (
                         console.log("Result item:", result),
-                        <li key={index} onClick={() => props.event(result)}>
-                            <StatusCard setURL={`result/${result}`} statusFE={result} />
+                        <li key={index}>
+                            <StatusCard setURL={`results/${result}`} statusFE={result} />
                         </li>
                     ))
                 ) : (
