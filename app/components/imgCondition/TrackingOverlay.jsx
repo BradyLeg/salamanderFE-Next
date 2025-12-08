@@ -1,4 +1,4 @@
-export function TrackingOverlay({ point }) {
+export default function TrackingOverlay({ point }) {
     if (!point) return null;
 
     // Accept either normalized coords (0..1) or raw pixel values, and optionally image size

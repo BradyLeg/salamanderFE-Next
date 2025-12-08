@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { fetchResults } from "../api/binarize/route";
-import { StatusCard } from "./StatusCard";
+
+import StatusCard from "@/app/components/StatusCard";
 
 export default function ResultList(props) {
     const [result, setResult] = useState([]);

@@ -1,8 +1,8 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
-import { startProcessing, getJobStatus } from "./../api/binarize/route";
+import { useRef, useState } from "react";
+import { startProcessing } from "./../api/binarize/route";
 
-export default function ConfirmButton(props) {
+export default function SoundButton(props) {
     const [jobStatus, setJobStatus] = useState(null);
     const audioRef = useRef(null);
 

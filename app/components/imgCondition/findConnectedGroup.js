@@ -41,8 +41,6 @@ export function findConnectedGroups(imageData, width, height){
                 stack.push([y + dy, x + dx]);
             }
         }
-
-        // console.log(`Coordinates: x:${point.x}, y:${point.y}`);
         return pixels;
     }
 

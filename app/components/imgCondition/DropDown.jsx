@@ -1,5 +1,5 @@
 'use client';
-import { mockVideoList } from "../../mock/mockVideos";
+
 import { useState, useEffect } from "react";
 import { fetchVideos } from "../../api/binarize/route";
 

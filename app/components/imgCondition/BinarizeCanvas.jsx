@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { fetchImg } from "../../api/binarize/route";
-import { findConnectedGroups } from "./findConnectedGroup";
+import { findConnectedGroups } from "@/app/components/imgCondition/findConnectedGroup";
 
 
 // Custom hook for fetching image (memoizing the result)
@@ -54,7 +54,7 @@ export function BinarizeCanvas(props) {
 
         img.onload = () => {
             const canvas = canvasRef.current;
-            const ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
             canvas.width = img.width;
             canvas.height = img.height;
@@ -69,13 +69,6 @@ export function BinarizeCanvas(props) {
         const { width, height } = canvas;
         const imageData = ctx.getImageData(0, 0, width, height);
         const data = imageData.data;
-
-        // const hexColor = props.target.replace('#', '');
-
-        // const rTarget = parseInt(hexColor.substring(0, 2), 16);
-        // const gTarget = parseInt(hexColor.substring(2, 4), 16);
-        // const bTarget = parseInt(hexColor.substring(4, 6), 16);
-
 
         const hexColor = props.hexColor;
         const threshold = props.threshold;

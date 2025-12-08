@@ -1,6 +1,6 @@
 "use client"; // Add this directive at the very top
 
-export function StatusCard(props) {
+export default function StatusCard(props) {
 
     // Function to handle URL update when the button is clicked
     const handleClick = () => {

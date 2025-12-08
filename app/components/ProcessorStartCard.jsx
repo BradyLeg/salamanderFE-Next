@@ -1,23 +1,22 @@
 'use client';
-import DropDown from '@/app/components/imgCondition/DropDown';
-import { BinarizeCanvas, RenderImg } from '@/app/components/imgCondition/BinarizeCanvas';
-import { TrackingOverlay } from './imgCondition/TrackingOverlay';
-import SoundButton from './ConfirmButton';
-// import RenderImg from './imgCondition/RenderImg';
 import { useState, useEffect } from "react";
 import { getJobStatus } from '../api/binarize/route';
-import { StatusCard } from './StatusCard';
-import ResultList from './ResultList';
+
+import TrackingOverlay from '@/app/components/imgCondition/TrackingOverlay';
+import DropDown from '@/app/components/imgCondition/DropDown';
+import { BinarizeCanvas, RenderImg } from '@/app/components/imgCondition/BinarizeCanvas';
+
+import SoundButton from '@/app/components/ConfirmButton';
+import StatusCard from '@/app/components/StatusCard';
 
 export default function ProcessorStartCard() {
     const [rangeNum, setNum] = useState(60);
     const [hexNum, setHex] = useState("#2a3e25");
-    // const [binarizedSrc, setBinarizedSrc] = useState(null);
     const [filename, setFile] = useState("");
     const [centroid, setCentroid] = useState(null);
     const [jobId, setJobId] = useState("");
-    const [jobStatus, setJobStatus] = useState(null);
-    //const [show, setShow] = useState(false);
+    const [statusFE, setStatusFe] = useState("");
+    const [URL, setURL] = useState("");
 
     function setNumState(event) {
         setNum(event.target.value);
@@ -35,9 +34,6 @@ export default function ProcessorStartCard() {
     function setJob(data) {
         setJobId(data);
     }
-
-    const [statusFE, setStatusFe] = useState("");
-    const [URL, setURL] = useState("");
 
     useEffect(() => {
         if (!jobId) return;
@@ -75,14 +71,13 @@ export default function ProcessorStartCard() {
 
     return (
         <form className="container-card-starter" onSubmit={e => { e.preventDefault(); }}>
-            {/* <form className="container-card-starter" action={`/process/{filename}?targetColor=<hex>&threshold=<int>`} */}
             <div className="card-row">
                 <div className="card-left">
                     <ul>
                         <li>Import Video <DropDown event={setFileName} /></li>
                         {filename != "" && <>
                             <li>Color <input type="color" id="color" name="color" defaultValue={hexNum} onInput={setColor}></input></li>
-                            <li>Threshold <input type="range" min="0" max="164" defaultValue={rangeNum} onInput={setNumState}></input><p>{rangeNum}</p></li>
+                            <li>Threshold <input type="range" min="0" max="100" defaultValue={rangeNum} onInput={setNumState}></input><p>{rangeNum}</p></li>
                         </>}
 
                     </ul>
@@ -107,16 +102,12 @@ export default function ProcessorStartCard() {
             </div>
 
             {filename != "" && <div className="button-lower">
-                {/* <button type="submit">“Process Video with These Settings</button> */}
                 <SoundButton file={filename} hex={hexNum} threshold={rangeNum} setJob={setJob} />
             </div>
             }
 
             {jobId != "" && <div className="button-lower">
-                {/* <button type="submit">“Process Video with These Settings</button> */}
                 <StatusCard setURL={URL} statusFE={statusFE} />
-                {/* <p>{statusFE}</p> */}
-                {/* <button> Download CSV </button> */}
             </div>
             }
         </form>
