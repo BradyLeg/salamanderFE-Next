@@ -60,7 +60,7 @@ Ensure Docker is running on `http://localhost:3000`
 Run "npm i" in terminal to install all packages.
 
 ```bash
-npm i
+npm i -y
 ```
 
 ### 3. Run Program
