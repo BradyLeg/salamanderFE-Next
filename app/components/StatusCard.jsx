@@ -21,7 +21,7 @@ export function StatusCard(props) {
         <div className="button-lower">
             {/* <button type="submit">“Process Video with These Settings</button> */}
             <p>{props.statusFE} </p>
-            <button onClick={handleClick}> Download CSV </button>
+            {props.statusFE !== "processing" && props.statusFE !== "" && (<button onClick={handleClick}> Download CSV </button>)}
         </div>
     );
 }
