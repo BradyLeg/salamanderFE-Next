@@ -12,29 +12,23 @@ export default function ConfirmButton(props) {
             audioRef.current.play();
         }
 
-        // console.log("Props.file:", props.file);
-        // console.log("Props.hex:", props.hex);
-        // console.log("Props.threshold:", props.threshold);
-        // console.log("Sending request to process video...");
+        console.log("Props.file:", props.file);
+        console.log("Props.hex:", props.hex);
+        console.log("Props.threshold:", props.threshold);
+        console.log("Sending request to process video...");
         
-        // try {
-        //     const status = await startProcessing(props.file, props.hex, props.threshold);
-        //     console.log("Job Status Response:", status);
-        //     setJobStatus(status);
+        try {
+            const status = props.setJob(await startProcessing(props.file, props.hex, props.threshold));
+            console.log("Job Status Response:", status);
+            setJobStatus(status);
             
-        //     // Log job ID if available
-        //     if (status && status.jobId) {
-        //         console.log("Job ID:", status.jobId);
-        //     }
-        // } catch (error) {
-        //     console.error("Error processing video:", error);
-        // }
-
-        console.log(props.file)
-        console.log(props.hex)
-        console.log(props.threshold)
-        console.log("Sending")
-        props.setJob(await startProcessing(props.file, props.hex, props.threshold));
+            // Log job ID if available
+            if (status && status.jobId) {
+                console.log("Job ID:", status.jobId);
+            }
+        } catch (error) {
+            console.error("Error processing video:", error);
+        }
     };
 
     return (
