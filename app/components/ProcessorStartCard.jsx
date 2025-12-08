@@ -14,6 +14,7 @@ export default function ProcessorStartCard() {
     const [filename, setFile] = useState("");
     const [centroid, setCentroid] = useState(null);
     const [jobId, setJobId] = useState("");
+    const [jobStatus, setJobStatus] = useState(null);
     //const [show, setShow] = useState(false);
 
     console.log("JobId:" + jobId)
@@ -38,31 +39,29 @@ export default function ProcessorStartCard() {
     useEffect(() => {
         if (!jobId) return;
 
-        let intervalId = null;
-        let stopped = false;
+        // let intervalId = null;
+        // let stopped = false;
 
-        async function poll() {
+        const inverval = setInterval(async () => {
             try {
                 const status = await getJobStatus(jobId.jobId);
                 console.log("STATUS:", status);
+                setJobStatus(status);
 
                 if (status.status === "done") {
                     console.log("Job finished!", status.result);
-                    stopped = true;
-                    clearInterval(intervalId);
+                    //stopped = true;
+                    clearInterval(interval);
                 }
             } catch (err) {
                 console.error("Error polling job:", err);
             }
-        }
-        intervalId = setInterval(poll, 2000);
-        poll();
+        }, 2000);
+        //intervalId = setInterval(poll, 2000);
+        //poll();
 
-        return () => {
-            clearInterval(intervalId);
-            stopped = true;
-        };
-    }, [jobId])
+        return () => clearInterval(interval);
+    }, [jobId]);
 
 
     return (
