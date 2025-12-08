@@ -38,12 +38,30 @@ export default function ProcessorStartCard() {
     useEffect(() => {
         if (!jobId) return;
 
-        async function run() {
-            const status = await getJobStatus(jobId.jobId);
-            console.log("STATUS:", status);
-        }
+        let intervalId = null;
+        let stopped = false;
 
-        run()
+        async function poll() {
+            try {
+                const status = await getJobStatus(jobId.jobId);
+                console.log("STATUS:", status);
+
+                if (status.status === "done") {
+                    console.log("Job finished!", status.result);
+                    stopped = true;
+                    clearInterval(intervalId);
+                }
+            } catch (err) {
+                console.error("Error polling job:", err);
+            }
+        }
+        intervalId = setInterval(poll, 2000);
+        poll();
+
+        return () => {
+            clearInterval(intervalId);
+            stopped = true;
+        };
     }, [jobId])
 
 
