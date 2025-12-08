@@ -19,21 +19,23 @@ export default function ResultList(props) {
     }, []); // Empty dependency array means this effect runs only once when the component mounts
 
     return (
-        <div>
-            {/* Render a list instead of a dropdown */}
-            <ul>
-                {/* Map through the result array and render each result as an <li> */}
-                {result.length > 0 ? (
-                    result.map((result, index) => (
-                        console.log("Result item:", result),
-                        <li key={index}>
-                            <StatusCard setURL={`results/${result}`} statusFE={result} />
-                        </li>
-                    ))
-                ) : (
-                    <li>No results found</li>
-                )}
-            </ul>
+        <div className="container-card-starter">
+            <div>
+                {/* Render a list instead of a dropdown */}
+                <ul className="resultList">
+                    {/* Map through the result array and render each result as an <li> */}
+                    {result.length > 0 ? (
+                        result.map((result, index) => (
+                            console.log("Result item:", result),
+                            <li key={index}>
+                                <StatusCard setURL={`results/${result}`} statusFE={result} />
+                            </li>
+                        ))
+                    ) : (
+                        <li>No results found</li>
+                    )}
+                </ul>
+            </div>
         </div>
     );
 }

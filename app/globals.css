@@ -13,6 +13,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.canvas-wrapper {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -92,6 +98,23 @@ body {
   width: 100%;
   flex: 1;
   padding: 20px;
+}
+
+.resultList {
+  list-style: none;           /* Remove default bullets */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;     /* Stack items vertically */
+  gap: 12px;                  /* Space between items */
+}
+
+.resultList li {
+  padding: 10px 12px;         /* Add padding inside each item */
+  background-color: rgba(255, 255, 255, 0.1); /* Slight contrast background */
+  border-radius: 8px;         /* Rounded corners */
+  color: #fff;                /* Text color */
+  font-weight: 500;
 }
 
 .container-card-starter {
@@ -194,4 +217,23 @@ body {
 
 .button-lower button:hover {
   background-color: #eee;
+}
+
+.header-links {
+    display: flex;
+    gap: 15px; /* <-- ensures 15px space between links */
+}
+
+.header-links a {
+    color: white;
+    background-color: #A68B50;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.header-links a:hover {
+    background-color: #916F44; /* Slightly darker hover effect */
 }

@@ -5,8 +5,10 @@ export default function Header() {
         <div className="header-container">
             <h1>Salamand Tracker</h1>
             <h2>via contrast detect</h2>
-            <Link href="/">Home</Link>
-            <Link href="/results">Results</Link>
+            <div className="header-links">
+                <Link href="/">Home</Link>
+                <Link href="/results">Results</Link>
+            </div>
         </div>
     )
 }

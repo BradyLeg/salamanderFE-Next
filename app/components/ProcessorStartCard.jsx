@@ -82,27 +82,24 @@ export default function ProcessorStartCard() {
 
                     </ul>
                 </div>
-                {filename != "" && <div className="card-right" style={{ position: "relative" }}>
+                {filename != "" && 
+                <div className="card-right" style={{ position: "relative" }}>
                     <div className='imageFetchBE'><RenderImg filename={filename} /></div>
-                    <div className='imageFetchBE'>
-                        <div className="canvas-wrapper" style={{ position: 'relative', display: 'inline-block', overflow: 'hidden' }}>
-                            {/* We'll need to get the image size from BinarizeCanvas and pass it to TrackingOverlay */}
-                            <BinarizeCanvas
-                                filename={filename}
-                                hexColor={hexNum}
-                                threshold={rangeNum}
-                                onObjectFound={(c, _pixels, imgSize) => setCentroid({ ...c, imgSize })}
-                            />
-                            {/* TrackingOverlay expects normalized coordinates and image size */}
-                            <TrackingOverlay point={centroid} />
-                        </div>
+                    <div className="canvas-wrapper">
+                        <BinarizeCanvas
+                        filename={filename}
+                        hexColor={hexNum}
+                        threshold={rangeNum}
+                        onObjectFound={(c, _pixels, imgSize) => setCentroid({ ...c, imgSize })}
+                        />
+                        <TrackingOverlay point={centroid} />
                     </div>
                 </div>
                 }
             </div>
 
             {filename != "" && <div className="button-lower">
-                <SoundButton file={filename} hex={hexNum} threshold={rangeNum} setJob={setJob} />
+                <SoundButton file={filename} hex={hexNum} threshold={rangeNum} setJob={setJob}/>
             </div>
             }
 
