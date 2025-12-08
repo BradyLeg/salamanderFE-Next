@@ -57,7 +57,7 @@ export default function ProcessorStartCard() {
                 if (status.status === "done") {
                     console.log("Job finished!", status.result);
                     //stopped = true;
-                    clearInterval(interval);
+                    clearInterval(inverval);
                 }
             } catch (err) {
                 console.error("Error polling job:", err);
@@ -66,7 +66,7 @@ export default function ProcessorStartCard() {
         //intervalId = setInterval(poll, 2000);
         //poll();
 
-        return () => clearInterval(interval);
+        return () => clearInterval(inverval);
     }, [jobId]);
 
     return (
@@ -110,13 +110,13 @@ export default function ProcessorStartCard() {
 
             {jobId != "" && <div className="button-lower">
                 {/* <button type="submit">“Process Video with These Settings</button> */}
-                <StatusCard setURL = {URL} statusFE = {statusFE}/>
+                <StatusCard setURL={URL} statusFE={statusFE} />
                 {/* <p>{statusFE}</p> */}
                 {/* <button> Download CSV </button> */}
             </div>
             }
 
-            <ResultList/>
+            <ResultList />
         </form>
     )
 }
