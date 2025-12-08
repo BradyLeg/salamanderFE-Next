@@ -6,11 +6,9 @@ export default function ResultsLayout({ children }) {
 return (
         <html>
             <body className="app-container">
-                <Header />
                     <main>
                         {children}
                     </main>
-                <Footer />
             </body>
         </html>
     )
