@@ -172,6 +172,15 @@ body {
   width: 100%;
 }
 
+.button-lower p {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .button-lower button {
   padding: 10px 20px;
   border: none;
