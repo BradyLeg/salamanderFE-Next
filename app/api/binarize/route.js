@@ -69,6 +69,29 @@ export async function fetchVideos() {
   }
 }
 
+export async function fetchResults() {
+  try {
+    // Send a GET request to the backend to fetch the video list
+    const response = await fetch('http://localhost:3000/process');
+
+    // Check if the response is successful (status 200)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    // Parse the JSON response directly into an array
+    const resultArray = await response.json();
+
+    // Since the backend sends a plain array, no mapping is needed
+    console.log(resultArray); // This is the array of filenames
+
+    return resultArray; // Return the array of filenames
+  } catch (error) {
+    console.error('Error fetching videos:', error);
+    return []; // Return an empty array in case of an error
+  }
+}
+
 export async function fetchImg(filename) {
   try {
     let response;
