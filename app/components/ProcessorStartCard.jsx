@@ -57,6 +57,7 @@ export default function ProcessorStartCard() {
                     console.log("Job finished!", status.result);
                     stopped = true;
                     clearInterval(intervalId);
+
                 }
             } catch (err) {
                 console.error("Error polling job:", err);
@@ -70,6 +71,7 @@ export default function ProcessorStartCard() {
             stopped = true;
         };
     }, [jobId])
+
 
     return (
         <form className="container-card-starter" onSubmit={e => { e.preventDefault(); }}>
@@ -112,7 +114,7 @@ export default function ProcessorStartCard() {
 
             {jobId != "" && <div className="button-lower">
                 {/* <button type="submit">“Process Video with These Settings</button> */}
-                <StatusCard setURL = {URL} statusFE = {statusFE}/>
+                <StatusCard setURL={URL} statusFE={statusFE} />
                 {/* <p>{statusFE}</p> */}
                 {/* <button> Download CSV </button> */}
             </div>

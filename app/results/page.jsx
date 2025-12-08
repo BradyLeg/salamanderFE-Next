@@ -1,10 +1,10 @@
-import ResultList from "../components/ResultList"
+import ResultList from "@/app/components/ResultList";
 
-export default function Results() {
+export default function ResultsPage() {
     return (
         <main>
             <ResultList />
         </main>
     )
 
-}
+};
