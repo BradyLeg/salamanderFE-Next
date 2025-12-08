@@ -1,7 +1,9 @@
-export default function ResultsPage() {
+import ResultList from "../components/ResultList"
+
+export default function Results() {
     return (
         <main>
-            <h2>Hey 2</h2>
+            <ResultList />
         </main>
     )
 

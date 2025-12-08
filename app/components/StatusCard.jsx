@@ -18,7 +18,7 @@ export function StatusCard(props) {
     };
 
     return (
-        <div>
+        <div className="button-lower">
             {/* <button type="submit">“Process Video with These Settings</button> */}
             <p>{props.statusFE} </p>
             <button onClick={handleClick}> Download CSV </button>

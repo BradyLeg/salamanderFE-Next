@@ -1,5 +1,8 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import { fetchResults } from "../api/binarize/route";
+import { StatusCard } from "./StatusCard";
 
 export default function ResultList(props) {
     const [result, setResult] = useState([]);
@@ -21,8 +24,9 @@ export default function ResultList(props) {
                 {/* Map through the result array and render each result as an <li> */}
                 {result.length > 0 ? (
                     result.map((result, index) => (
+                        console.log("Result item:", result),
                         <li key={index} onClick={() => props.event(result)}>
-                            {result}
+                            <StatusCard setURL={`result/${result}`} statusFE={result} />
                         </li>
                     ))
                 ) : (
