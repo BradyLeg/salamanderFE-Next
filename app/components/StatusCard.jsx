@@ -13,7 +13,7 @@ export default function StatusCard(props) {
         console.log("New URL:", newUrl);
 
         // Update the URL by navigating to the new URL
-        // window.location.href = newUrl; // This will redirect the page to the new URL
+        window.location.href = newUrl; // This will redirect the page to the new URL
     };
 
     return (
