@@ -3,9 +3,11 @@ import DropDown from '@/app/components/imgCondition/DropDown';
 import { BinarizeCanvas, RenderImg } from '@/app/components/imgCondition/BinarizeCanvas';
 import { TrackingOverlay } from './imgCondition/TrackingOverlay';
 import SoundButton from './ConfirmButton';
-import { getJobStatus, startProcessing } from "./../api/binarize/route";
 // import RenderImg from './imgCondition/RenderImg';
 import { useState, useEffect } from "react";
+import { getJobStatus } from '../api/binarize/route';
+import { StatusCard } from './StatusCard';
+import ResultList from './ResultList';
 
 export default function ProcessorStartCard() {
     const [rangeNum, setNum] = useState(60);
@@ -16,8 +18,6 @@ export default function ProcessorStartCard() {
     const [jobId, setJobId] = useState("");
     const [jobStatus, setJobStatus] = useState(null);
     //const [show, setShow] = useState(false);
-
-    console.log("JobId:" + jobId)
 
     function setNumState(event) {
         setNum(event.target.value);
@@ -36,6 +36,9 @@ export default function ProcessorStartCard() {
         setJobId(data);
     }
 
+    const [statusFE, setStatusFe] = useState("");
+    const [URL, setURL] = useState("");
+
     useEffect(() => {
         if (!jobId) return;
 
@@ -45,6 +48,9 @@ export default function ProcessorStartCard() {
         const inverval = setInterval(async () => {
             try {
                 const status = await getJobStatus(jobId.jobId);
+                setURL(jobId.jobId);
+                console.log("URL:", URL);
+                setStatusFe(status.status);
                 console.log("STATUS:", status);
                 setJobStatus(status);
 
@@ -62,7 +68,6 @@ export default function ProcessorStartCard() {
 
         return () => clearInterval(interval);
     }, [jobId]);
-
 
     return (
         <form className="container-card-starter" onSubmit={e => { e.preventDefault(); }}>
@@ -99,11 +104,19 @@ export default function ProcessorStartCard() {
 
             {filename != "" && <div className="button-lower">
                 {/* <button type="submit">“Process Video with These Settings</button> */}
-                {/* <SoundButton file={filename} hex={hexNum} threshold={rangeNum}/> */}
-
-                <SoundButton file={filename} hex={hexNum} threshold={rangeNum} setJob={setJobId} />
+                <SoundButton file={filename} hex={hexNum} threshold={rangeNum} setJob={setJob} />
             </div>
             }
+
+            {jobId != "" && <div className="button-lower">
+                {/* <button type="submit">“Process Video with These Settings</button> */}
+                <StatusCard setURL = {URL} statusFE = {statusFE}/>
+                {/* <p>{statusFE}</p> */}
+                {/* <button> Download CSV </button> */}
+            </div>
+            }
+
+            <ResultList/>
         </form>
     )
 }
