@@ -116,3 +116,11 @@ export async function startProcessing(filename, targetColor, threshold) {
   return data;
 }
 
+export async function getJobStatus(jobId) {
+  const res = await fetch(`http://localhost:3000/process/${jobId}/status`);
+
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+
