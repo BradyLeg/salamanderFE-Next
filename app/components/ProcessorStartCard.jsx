@@ -42,32 +42,34 @@ export default function ProcessorStartCard() {
     useEffect(() => {
         if (!jobId) return;
 
-        // let intervalId = null;
-        // let stopped = false;
+        let intervalId = null;
+        let stopped = false;
 
-        const inverval = setInterval(async () => {
+        async function poll() {
             try {
                 const status = await getJobStatus(jobId.jobId);
                 setURL(jobId.jobId);
                 console.log("URL:", URL);
                 setStatusFe(status.status);
                 console.log("STATUS:", status);
-                setJobStatus(status);
 
                 if (status.status === "done") {
                     console.log("Job finished!", status.result);
-                    //stopped = true;
-                    clearInterval(interval);
+                    stopped = true;
+                    clearInterval(intervalId);
                 }
             } catch (err) {
                 console.error("Error polling job:", err);
             }
-        }, 2000);
-        //intervalId = setInterval(poll, 2000);
-        //poll();
+        }
+        intervalId = setInterval(poll, 2000);
+        poll();
 
-        return () => clearInterval(interval);
-    }, [jobId]);
+        return () => {
+            clearInterval(intervalId);
+            stopped = true;
+        };
+    }, [jobId])
 
     return (
         <form className="container-card-starter" onSubmit={e => { e.preventDefault(); }}>
@@ -115,8 +117,6 @@ export default function ProcessorStartCard() {
                 {/* <button> Download CSV </button> */}
             </div>
             }
-
-            <ResultList/>
         </form>
     )
 }
