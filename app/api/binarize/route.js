@@ -39,9 +39,9 @@ export async function POST(req) {
     return new Response(JSON.stringify({ base64 }), { headers: { "Content-Type": "application/json" } });
   } catch (error) {
     console.error('Binarize API Error:', error);
-    return new Response(JSON.stringify({ error: error.message }), { 
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: { "Content-Type": "application/json" } 
+      headers: { "Content-Type": "application/json" }
     });
   }
 }
@@ -49,7 +49,7 @@ export async function POST(req) {
 export async function fetchVideos() {
   try {
     // Send a GET request to the backend to fetch the video list
-    const response = await fetch('http://localhost:3000/videos'); 
+    const response = await fetch('http://localhost:3000/videos');
 
     // Check if the response is successful (status 200)
     if (!response.ok) {
@@ -97,5 +97,22 @@ export async function fetchImg(filename) {
     console.error('Error fetching image:', error);
     return ''; // Return an empty string in case of an error
   }
+}
+
+export async function startProcessing(filename, targetColor, threshold) {
+
+  const target = targetColor.replace("#", "");
+  const res = await fetch(`http://localhost:3000/process/${filename}?targetColor=${target}&threshold=${threshold}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  );
+
+  const data = await res.json();
+  console.log(data);
+  return data;
 }
 

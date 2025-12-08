@@ -43,10 +43,10 @@ export default function ProcessorStartCard() {
                 </div>
                 {filename != "" && <div className="card-right" style={{ position: "relative" }}>
                     <div className='imageFetchBE'><RenderImg filename={filename} /></div>
-                    <div className='imageFetchBE'> 
-                        <div className = "canvas-wrapper" style={{ position: 'relative', display: 'inline-block', overflow: 'hidden' }}>
+                    <div className='imageFetchBE'>
+                        <div className="canvas-wrapper" style={{ position: 'relative', display: 'inline-block', overflow: 'hidden' }}>
                             {/* We'll need to get the image size from BinarizeCanvas and pass it to TrackingOverlay */}
-                            <BinarizeCanvas 
+                            <BinarizeCanvas
                                 filename={filename}
                                 hexColor={hexNum}
                                 threshold={rangeNum}
@@ -56,13 +56,13 @@ export default function ProcessorStartCard() {
                             <TrackingOverlay point={centroid} />
                         </div>
                     </div>
-                    </div>
+                </div>
                 }
             </div>
 
             {filename != "" && <div className="button-lower">
                 {/* <button type="submit">“Process Video with These Settings</button> */}
-                <SoundButton/>
+                <SoundButton file={filename} hex={hexNum} threshold={rangeNum} />
             </div>
             }
         </form>
