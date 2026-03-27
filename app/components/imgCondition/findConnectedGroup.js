@@ -67,7 +67,7 @@ export function findConnectedGroups(imageData, width, height){
         y: Math.floor(sumY / largestGroup.length)
     };
 
-    console.log(`Coordinates: x:${centroid.x}, y:${centroid.y}`);
+    console.log(`Coordinates: x:${centroid.x}, y:${centroid.y}`); 
 
 
     return {
